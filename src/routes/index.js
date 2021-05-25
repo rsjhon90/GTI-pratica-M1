@@ -3,6 +3,6 @@ import carsRouter from './cars.routes.js';
 
 const routes = Router();
 
-routes.use('/marcas/maisModelos', carsRouter);
+routes.use('/marcas/', carsRouter);
 
 export default routes;

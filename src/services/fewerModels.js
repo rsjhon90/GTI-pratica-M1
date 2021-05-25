@@ -1,25 +1,19 @@
-import { promises as fs } from "fs";
+import CarsRepository from '../repositories/CarsRepository.js';
 
-export default async function brandWithFewerModels() {
-  try {
-    const cars = (JSON.parse(await fs.readFile("car-list.json")));
+async function brandWithFewerModels() {
+  const cars = await CarsRepository();
 
-    cars
-    .sort((i1, i2) => {
-      if (i1.models.length < i2.models.length) {
-        return -1;
-      } else if (i1.models.length > i2.models.length) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
+  const smallPortfolio = cars.filter((car) => {
+    const minModel = Math.min(...cars.map(
+      (car) => car.models.length));
 
-    let smallestBrand = cars.find((car) => car.brand);
+    return car.models.length == minModel;
 
-    return console.log(smallestBrand);
+  });
 
-  } catch (err) {
-    console.log(err)
-  }
+  const smallBrand = smallPortfolio.map((car) => car.brand);
+
+  return smallBrand;
 }
+
+export default brandWithFewerModels;
