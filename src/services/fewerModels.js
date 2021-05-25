@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 
 export default async function brandWithFewerModels() {
   try {
-    let cars = (JSON.parse(await fs.readFile("car-list.json")));
+    const cars = (JSON.parse(await fs.readFile("car-list.json")));
 
     cars
     .sort((i1, i2) => {

@@ -1,8 +1,10 @@
 import { promises as fs } from "fs";
 
+brandWithMoreModels()
+
 export default async function brandWithMoreModels() {
   try {
-    let cars = (JSON.parse(await fs.readFile("car-list.json")));
+    const cars = (JSON.parse(await fs.readFile("car-list.json")));
 
     cars
     .sort((i1, i2) => {
@@ -15,7 +17,9 @@ export default async function brandWithMoreModels() {
       }
     });
 
-    let BiggestBrand = cars.find((car) => car.brand);
+    let BiggestBrand = cars.filter((car) => {
+      return car.brand
+    });
 
     return console.log(BiggestBrand);
 
