@@ -1,7 +1,6 @@
 import { Router } from 'express';
-import brandWithMoreModels from '../services/moreModels.js';
-import brandWithFewerModels from '../services/fewerModels.js';
-import findBiggestBrands from '../services/moreModelsList.js';
+import { brandWithMoreModels, brandWithFewerModels} from '../services/brandSB.js';
+import { findBiggestBrands, findSmallerBrands } from '../services/brandsList.js';
 
 const carsRouter = Router();
 
@@ -25,12 +24,34 @@ carsRouter.get('/menosModelos', async (request, response) => {
   }
 });
 
-carsRouter.get('/listaMenosModelos/:id', async (request, response) => {
+carsRouter.get('/listaMaisModelos/:id', async (request, response) => {
   try {
-    
+    const biggerList = await findBiggestBrands(request.params.id);
+
+    return response.json(biggerList);
   } catch (err) {
     return response.json({ error: err.message });
   }
 });
+
+carsRouter.get('/listaMenosModelos/:id', async (request, response) => {
+  try {
+    const smallerList = await findSmallerBrands(request.params.id);
+
+    return response.json(smallerList);
+  } catch (err) {
+    return response.json({ error: err.message });
+  }
+});
+
+carsRouter.post('/listaModelos', async (request, response) => {
+  try {
+    const { nomeMarca } = request.body;
+
+
+  } catch (err) {
+    response.json({ error: err.message });
+  }
+})
 
 export default carsRouter;

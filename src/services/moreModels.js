@@ -10,15 +10,15 @@ async function brandWithMoreModels() {
 
   // const maxModel = Math.max(...cars.map((car) => car.models.length));
 
-  const largPortfolio = cars.filter((car) => {
-    const maxModel = Math.max(...cars.map(
-      (car) => car.models.length));
+  const biggerBrand = cars
+    .filter((car) => {
+      const maxModel = Math.max(...cars.map(
+        (car) => car.models.length));
 
-    return car.models.length == maxModel;
+      return car.models.length == maxModel;
 
-  });
-
-  const biggerBrand = largPortfolio.map((car) => car.brand);
+    })
+    .map((car) => car.brand);
 
   return biggerBrand;
 }
