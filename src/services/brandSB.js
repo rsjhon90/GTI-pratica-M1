@@ -3,17 +3,16 @@ import CarsRepository from '../repositories/CarsRepository.js';
 export async function brandWithFewerModels() {
   const cars = await CarsRepository();
 
-  const smallBrand = cars
+  const smallerBrand = cars
     .filter((car) => {
       const minModel = Math.min(...cars.map(
         (car) => car.models.length));
 
       return car.models.length == minModel;
-
     })
     .map((car) => car.brand);
 
-  return smallBrand;
+  return smallerBrand;
 }
 
 export async function brandWithMoreModels() {

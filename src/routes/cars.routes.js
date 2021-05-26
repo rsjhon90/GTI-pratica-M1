@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { brandWithMoreModels, brandWithFewerModels} from '../services/brandSB.js';
-import { findBiggestBrands, findSmallerBrands } from '../services/brandsList.js';
+import { findBiggestBrands, findSmallerBrands, findBrandName } from '../services/brandsList.js';
 
 const carsRouter = Router();
 
@@ -48,7 +48,9 @@ carsRouter.post('/listaModelos', async (request, response) => {
   try {
     const { nomeMarca } = request.body;
 
+    const models = await findBrandName(nomeMarca);
 
+    return response.json(models);
   } catch (err) {
     response.json({ error: err.message });
   }
