@@ -6,5 +6,5 @@ Módulo 1
 Desenvolvimento Back-End com JavaScript
 Criei rotas com requisições e respostas a partir de um arquivo json na pasta repositories.
 
-Ao clonar, instale as dependencias com o comando: yarn ou npm.
+Ao clonar, instale as dependencias já pré-estabelecida com o comando: "yarn" ou "npm install".
 Para iniciar o servidor "yarn dev" ou "npm dev".
